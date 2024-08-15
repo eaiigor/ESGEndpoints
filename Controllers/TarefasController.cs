@@ -16,18 +16,8 @@ namespace ESGENDPOINTS.Controllers
         // GET: api/Tarefas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Tarefa>>> GetTarefas(
-            [FromServices] ITarefasQueries queries) {
-            try
-            {
-                var tarefas = await queries.GetAllAsync();
-                return Ok(tarefas);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
-
-        }
+            [FromQuery] int? status,
+            [FromServices] ITarefasQueries queries) => Ok(await queries.GetAllAsync(status));
 
         // GET: api/Tarefas/5
         [HttpGet("{id}")]
