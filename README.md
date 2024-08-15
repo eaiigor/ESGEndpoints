@@ -40,6 +40,7 @@ Foi utilizado de ORM o Entity Framework Core junto do SQLServer.
 1- Crie uma variável de ambiente chamada CONN_STR seguindo o modelo
 
 `Data Source=R31D\\SQLEXPRESS;Initial Catalog=ESG_DB;Integrated Security=False;User ID=USERNAME;Password=PWD;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False`
+
 Substitua USERNAME por seu usuário e PWD pela senha de seu servidor sql server.
 
 2- Certifique que você está no projeto da aplicação (se estiver na raiz do projeto, o database update não vai funcionar)
