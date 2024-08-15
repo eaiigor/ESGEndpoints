@@ -17,5 +17,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.7.0" />
   </ItemGroup>
-
+  <Target Name="PrePublishTarget" AfterTargets="Publish">
+    <Exec Command="dotnet ef database update" />
+  </Target>
 </Project>
