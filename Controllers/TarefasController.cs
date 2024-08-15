@@ -11,12 +11,23 @@ namespace ESGENDPOINTS.Controllers
     public class TarefasController : ControllerBase
     {
 
-        public TarefasController() {}
+        public TarefasController() { }
 
         // GET: api/Tarefas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Tarefa>>> GetTarefas(
-            [FromServices] ITarefasQueries queries) => Ok(await queries.GetAllAsync());
+            [FromServices] ITarefasQueries queries) {
+            try
+            {
+                var tarefas = await queries.GetAllAsync();
+                return Ok(tarefas);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+        }
 
         // GET: api/Tarefas/5
         [HttpGet("{id}")]
