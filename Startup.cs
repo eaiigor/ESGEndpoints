@@ -1,20 +1,9 @@
 ﻿using ESGENDPOINTS.Application.Queries;
 using ESGENDPOINTS.Infrastructure.Data;
 using ESGENDPOINTS.Infrastructure.Repositories;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Reflection;
-using System.Text.Json;
 
 namespace ProdutosApi
 {
@@ -36,8 +25,10 @@ namespace ProdutosApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProdutosApi", Version = "v1" });
             });
 
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 36));
+            var connectionString = Environment.GetEnvironmentVariable("CONN_STR");
             services.AddDbContext<ApiDbContext>
-                (options => options.UseSqlite(Configuration.GetConnectionString("WebApiDatabase")));
+                (options => options.UseMySql(connectionString, serverVersion));
 
             services.AddCors(options =>
             {

@@ -11,36 +11,38 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESGENDPOINTS.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240815044051_SetupSqlite")]
-    partial class SetupSqlite
+    [Migration("20240815062312_SetupMysql")]
+    partial class SetupMysql
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.32");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "6.0.32")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("ESGENDPOINTS.Domain.Entities.Tarefa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Id");
 
                     b.Property<DateTime>("DataVencimento")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("DataVencimento");
 
                     b.Property<string>("Descricao")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("longtext")
                         .HasColumnName("Descricao");
 
                     b.Property<int>("Status")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Status");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("longtext")
                         .HasColumnName("Titulo");
 
                     b.HasKey("Id");
