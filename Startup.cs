@@ -38,7 +38,7 @@ namespace ProdutosApi
 
             var connectionString = Environment.GetEnvironmentVariable("CONN_STR");
             services.AddDbContext<ApiDbContext>
-                (options => options.UseSqlServer(connectionString);
+                (options => options.UseSqlServer(connectionString));
 
             services.AddCors(options =>
             {
