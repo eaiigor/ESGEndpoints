@@ -18,7 +18,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.7.0" />
   </ItemGroup>
   <Target Name="PrePublishTarget" AfterTargets="Publish">
-	<Exec Command ="dotnet ef migrations script SetupSqlite" />
+	<Exec Command ="dotnet ef migrations script SetupMysql" />
     <Exec Command="dotnet ef database update" />
   </Target>
 </Project>
