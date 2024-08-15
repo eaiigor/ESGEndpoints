@@ -12,7 +12,7 @@ namespace ESGENDPOINTS.Application.Queries
             _tarefasRepository = tarefasRepository;
         }
 
-        public Task<IEnumerable<Tarefa>> GetAllAsync() => _tarefasRepository.GetAllAsync();
+        public Task<IEnumerable<Tarefa>> GetAllAsync(int? status) => _tarefasRepository.GetAllAsync(status);
 
         public Task<Tarefa?> GetByIdAsync(int id) => _tarefasRepository.GetByIdAsync(id);
 

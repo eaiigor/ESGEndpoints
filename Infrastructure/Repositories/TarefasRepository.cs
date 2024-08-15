@@ -35,9 +35,11 @@ namespace ESGENDPOINTS.Infrastructure.Repositories
             return;
         }
 
-        public async Task<IEnumerable<Tarefa>> GetAllAsync()
+        public async Task<IEnumerable<Tarefa>> GetAllAsync(int? status)
         {
-            return await _context.Tarefa.ToListAsync();
+            return await _context.Tarefa
+                .Where(tarefas => status == null || tarefas.Status == status)
+                .ToListAsync();
         }
 
         public async Task<Tarefa?> GetByIdAsync(int id)
