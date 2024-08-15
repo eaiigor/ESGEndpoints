@@ -37,7 +37,7 @@ namespace ProdutosApi
             });
 
             services.AddDbContext<ApiDbContext>
-                (options => options.UseSqlServer("Data Source=R31D\\SQLEXPRESS;Initial Catalog=ESG_DB;Integrated Security=False;User ID=sa;Password=123456;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False"));
+                (options => options.UseSqlite(Configuration.GetConnectionString("WebApiDatabase")));
 
             services.AddCors(options =>
             {
